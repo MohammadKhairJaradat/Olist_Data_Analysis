@@ -1,0 +1,27 @@
+{
+  "joined_records": 96353,
+  "unique_orders": 95824,
+  "purchase_date_start": "2016-09-15",
+  "purchase_date_end": "2018-08-29",
+  "delay_rate_by_record": 0.0799144811266904,
+  "delay_rate_by_order": 0.07994865586909333,
+  "groups": [
+    {
+      "delivery_status": "On-Time",
+      "joined_records": 88653,
+      "unique_orders": 88163,
+      "average_review": 4.2937182046856845,
+      "median_review": 5.0,
+      "record_share": 0.9200855188733096
+    },
+    {
+      "delivery_status": "Delayed",
+      "joined_records": 7700,
+      "unique_orders": 7661,
+      "average_review": 2.5664935064935066,
+      "median_review": 2.0,
+      "record_share": 0.0799144811266904
+    }
+  ],
+  "note": "Joined records preserve multiple reviews per order; association does not prove causation."
+}

@@ -1,103 +1,77 @@
-# 🚚 مشروع تحليل بيانات متجر Olist: أثر تأخير التوصيل على تقييمات العملاء
-### (Olist E-Commerce: Delivery Delay vs. Review Score Analysis)
+# Olist Delivery and Customer Reviews
 
----
+**SQL · Python · Power BI**<br>
+[العربية](README.ar.md) · [Portfolio](https://github.com/MohammadKhairJaradat) · [Power BI file](Dashboard/Olist_Data_Visualization.pbix)
 
-## 🎯 سؤال العمل الرئيسي (Business Question)
-> **"كيف يؤثر تأخر توصيل الشحنات عن موعدها المتوقع على تقييمات العملاء (Review Scores)، وما هو حجم الهبوط في رضا العميل عند تأخر الطلب؟"**
+A focused analysis of one question: **How do customer review scores differ between on-time and delayed deliveries?** This project joins the data in SQLite, checks and analyzes it with pandas, and presents the delivery KPIs in Power BI.
 
----
+![Python summary of delivery status and customer review scores](reports/delivery_review_summary.png)
 
-## 📌 الهدف من المشروع (Project Objective)
-الهدف من هذا المشروع هو تطبيق خطوات **تحليل البيانات (End-to-End Data Analysis)** بشكل عملي ومصغّر، بالتركيز على **سؤال تجاري واحد ومحدد**، للربط بين الأدوات الأساسية لمحلل البيانات:
-1. **تجهيز قاعدة البيانات واستخراج البيانات بـ SQL**.
-2. **التنظيف والتحليل الإحصائي الأساسي بـ Python (Pandas)**.
-3. **تصميم لوحة تحكم تفاعلية وواضحة بـ Power BI**.
+## Findings
 
----
+The included analysis contains **96,353 joined records covering 95,824 unique orders**, with purchase dates from September 2016 to August 2018.
 
-## 💡 ماذا تعلمت من هذا المشروع؟ (What I Learned)
+| Delivery status | Joined records | Share of records | Average review | Median review |
+|---|---:|---:|---:|---:|
+| On-time | 88,653 | 92.01% | 4.29 / 5 | 5 |
+| Delayed | 7,700 | 7.99% | 2.57 / 5 | 2 |
 
-خلال العمل على هذا المشروع، اكتسبت وطبقت المهارات التالية:
+The delayed group has a **1.73-point lower average review** (about 40% below the on-time group). This suggests prioritizing investigation of delivery delays and clearer customer updates. It does not establish causation, measure churn, or show the effect of an implemented intervention.
 
-1. **التعامل مع قواعد البيانات العلائقية (SQL & SQLite)**:
-   - كيفية استيراد ملفات `CSV` متعددة وتحويلها إلى قاعدة بيانات موحدة (`olist.db`).
-   - كتابة استعلامات `JOIN` لربط جدول الطلبات (`orders`) بتقييمات العملاء (`reviews`) وبيانات العملاء (`customers`).
-   - استخدام دوال التواريخ وحساب الفوارق الزمنية بالأيام (`JULIANDAY`)، وتصنيف الشحنات باستخدام `CASE WHEN`.
+**Unit of analysis:** an order can have multiple review records. The SQL join preserves those rows, so the percentages and review averages above are weighted by joined records. They are not equal-weight order-level estimates. The unique-order delay rate is approximately **8.00%** (7,661 / 95,824).
 
-2. **تنظيف واستكشاف البيانات (Python & Pandas)**:
-   - تنفيذ استعلامات الـ SQL مباشرة عبر بايثون ونقلها إلى `DataFrame`.
-   - فحص جودة البيانات واستبعاد القيم الشاذة منطقياً (مثل استبعاد الطلبات ذات أوقات التوصيل السالبة).
-   - استخدام دوال التجميع (`groupby` و `agg`) لحساب نسب التأخير ومتوسطات التقييم لكل فئة.
-   - تصدير ملف نظيف ومختصر لتغذية أدوات الـ BI مباشرة.
+## View the outputs
 
-3. **ذكاء الأعمال وبناء لوحات التحكم (Power BI)**:
-   - تصميم لوحة تحكم (Dashboard) مركّزة بصفحة واحدة تخدم سؤال العمل مباشرة بدون تشتيت.
-   - عرض مؤشرات الأداء اللوجستية الرئيسية (KPIs) ومقارنة التقييمات حسب حالة التوصيل (`On-Time` مقابل `Delayed`).
+- Open [the original Power BI dashboard](Dashboard/Olist_Data_Visualization.pbix) in Power BI Desktop. To refresh it, repoint its data source to your local `Data/cleaned_delivery_analysis.csv`.
+- Read [the notebook](notebooks/delivery_analysis.ipynb) for SQL extraction, cleaning, comparisons, and charts.
+- Use [the included cleaned CSV](Data/cleaned_delivery_analysis.csv) to explore the results without downloading the original dataset.
+- The preview above is a **Python results summary**, separate from the Power BI dashboard.
 
-4. **التفكير التحليلي وربط الأرقام بالبزنس (Business Impact)**:
-   - فهم أن دور محلل البيانات لا يتوقف عند كتابة الأكواد، بل تحويل الأرقام إلى حقائق تساعد صناع القرار (مثل معرفة أن التأخير يقلل تقييم العميل بنسبة 40%).
+## Run from the original data
 
----
-
-## 📊 أهم نتائج التحليل (Key Business Findings)
-
-بعد تحليل **96,353 طلباً مكتملاً**:
-
-* **نسبة التأخير الإجمالية**: **7.99%** من الطلبات وصلت بعد الموعد المتوقع.
-* **الطلبات في الموعد (On-Time)**: حققت متوسط تقييم ممتاز بلغ **`4.29 / 5.0 ⭐`** (الوسيط: 5.0).
-* **الطلبات المتأخرة (Delayed)**: انخفض متوسط التقييم بشكل حاد ليصل إلى **`2.57 / 5.0 ⭐`** (الوسيط: 2.0).
-* **النتيجة التجارية (Impact)**: تأخير الشحنة يتسبب في **هبوط حاد بنسبة 40% في رضا العملاء**، مما يجعل الالتزام بمواعيد التوصيل أولوية قصوى لتقليل فقدان العملاء (Customer Churn).
-
-| حالة التوصيل (Delivery Status) | عدد الطلبات (Orders) | النسبة المئوية (%) | متوسط التقييم (Avg Review) | التقييم الوسيط (Median) |
-| :--- | :---: | :---: | :---: | :---: |
-| **في الموعد (On-Time)** | 88,653 | 92.01% | **4.29** | 5.0 ⭐ |
-| **متأخر (Delayed)** | 7,700 | 7.99% | **2.57** | 2.0 ⭐ |
-
----
-
-## 📂 هيكل المشروع (Project Structure)
+Download the [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) and place these three files in `Data/`:
 
 ```text
-Olist_Data_Analysis/
-│
-├── load_to_sqlite.py                  # سكربت بايثون لتحميل ملفات CSV لقاعدة SQLite
-├── requirements.txt                   # مكتبات البايثون المستخدمة
-├── .gitignore                         # ملف استثناء الملفات المؤقتة
-├── README.md                          # وثيقة توضيح المشروع والنتائج
-│
-├── sql/
-│   └── delivery_analysis.sql          # استعلام SQL لاستخراج أيام التوصيل والتقييمات
-│
-├── notebooks/
-│   └── delivery_analysis.ipynb        # مفكرة Jupyter للتحليل والاستكشاف وتصدير البيانات
-│
-├── Dashboard/
-│   └── Olist_Data_Visualization.pbix  # ملف لوحة تحكم Power BI التفاعلية
-│
-└── Data/
-    └── cleaned_delivery_analysis.csv  # الملف النظيف الجاهز لتغذية الداشبورد
+olist_orders_dataset.csv
+olist_order_reviews_dataset.csv
+olist_customers_dataset.csv
 ```
 
----
+The source files are not included in this repository. Keep the filenames unchanged.
 
-## 🚀 كيفية تشغيل المشروع محلياً (How to Run)
+```bash
+git clone https://github.com/MohammadKhairJaradat/Olist_Data_Analysis.git
+cd Olist_Data_Analysis
+python -m pip install -r requirements.txt
+python load_to_sqlite.py
+python -m jupyter notebook notebooks/delivery_analysis.ipynb
+```
 
-1. استنساخ المستودع (Clone):
-   ```bash
-   git clone https://github.com/<your-username>/Olist_Data_Analysis.git
-   cd Olist_Data_Analysis
-   ```
-2. تثبيت المكتبات المطلوبة:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. بناء قاعدة البيانات (تأكد من وجود ملفات الـ CSV داخل مجلد `Data/`):
-   ```bash
-   python load_to_sqlite.py
-   ```
-4. تشغيل مفكرة Jupyter التفاعلية للتحليل:
-   ```bash
-   jupyter notebook notebooks/delivery_analysis.ipynb
-   ```
-5. فتح ملف `Dashboard/Olist_Data_Visualization.pbix` باستخدام برنامج **Power BI Desktop** لاستعراض الداشبورد التفاعلي.
+Run the notebook cells in order. The loader creates `olist.db`; the notebook executes [delivery_analysis.sql](sql/delivery_analysis.sql), removes negative delivery durations, and exports the cleaned CSV. It supports a notebook started from the project root or the `notebooks` folder.
+
+To regenerate the preview and verify the published metrics using the included cleaned CSV:
+
+```bash
+python summarize_results.py
+```
+
+## Files
+
+| Path | Purpose |
+|---|---|
+| `load_to_sqlite.py` | Load the three required source CSVs into SQLite |
+| `sql/delivery_analysis.sql` | Join delivered orders, customers and reviews; derive delivery status |
+| `notebooks/delivery_analysis.ipynb` | Cleaning, descriptive analysis and export |
+| `summarize_results.py` | Recalculate row/order metrics and save a results preview |
+| `reports/` | Reproducible summary chart and metrics |
+| `Data/cleaned_delivery_analysis.csv` | Included analysis-ready records |
+| `Dashboard/Olist_Data_Visualization.pbix` | Original one-page Power BI dashboard |
+
+## Scope and limitations
+
+- Delivered orders with available delivery and estimated dates, and matching customer/review records only.
+- The source is historical Brazilian e-commerce data; results do not describe current performance.
+- Multiple reviews per order affect row-level weighting. Delivery times and review scores can also be affected by factors outside this analysis.
+- Recommendations are proposed actions; business impact has not been measured.
+
+Source: [Olist dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), distributed under CC BY-NC-SA 4.0. This is an independent educational project. The original data remains attributable to its providers.
