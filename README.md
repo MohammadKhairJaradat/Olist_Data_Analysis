@@ -82,3 +82,7 @@ python summarize_results.py
 - Recommendations are proposed actions; business impact has not been measured.
 
 Source: [Olist dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), distributed under CC BY-NC-SA 4.0. This is an independent educational project. The original data remains attributable to its providers.
+
+## Contact
+
+[Email Mohammad Khair Jaradat](mailto:mohammad.sameer.jaradat@gmail.com) · [GitHub profile](https://github.com/MohammadKhairJaradat) · [CV](https://github.com/MohammadKhairJaradat/MohammadKhairJaradat/blob/main/Mohammad_Khair_Jaradat_CV.pdf)
