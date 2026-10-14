@@ -20,6 +20,13 @@ The delayed group has a **1.73-point lower average review** (about 40% below the
 
 **Unit of analysis:** an order can have multiple review records. The SQL join preserves those rows, so the percentages and review averages above are weighted by joined records. They are not equal-weight order-level estimates. The unique-order delay rate is approximately **8.00%** (7,661 / 95,824).
 
+## Recommendations
+
+- Monitor delayed-delivery segments by customer state and purchase period to prioritize further investigation.
+- Review delivery estimates and improve customer updates when a delay is expected.
+
+These are proposed operational actions. This project does not measure whether implementing them reduces delays or increases review scores.
+
 ## View the outputs
 
 - Open [the original Power BI dashboard](Dashboard/Olist_Data_Visualization.pbix) in Power BI Desktop. To refresh it, repoint its data source to your local `Data/cleaned_delivery_analysis.csv`.
