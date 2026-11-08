@@ -1,0 +1,174 @@
+{
+  "dataset_path": "Data/parquet",
+  "partition_key": "purchase_ym",
+  "compression": "snappy",
+  "partition_count": 23,
+  "parquet_file_count": 23,
+  "total_rows": 96353,
+  "total_size_bytes": 7458823,
+  "purchase_ym_min": "2016-09",
+  "purchase_ym_max": "2018-08",
+  "partitions": [
+    {
+      "purchase_ym": "2016-09",
+      "rows": 1,
+      "unique_orders": 1,
+      "delayed_rows": 1,
+      "avg_review_score": 1.0
+    },
+    {
+      "purchase_ym": "2016-10",
+      "rows": 264,
+      "unique_orders": 262,
+      "delayed_rows": 2,
+      "avg_review_score": 4.0189
+    },
+    {
+      "purchase_ym": "2016-12",
+      "rows": 1,
+      "unique_orders": 1,
+      "delayed_rows": 0,
+      "avg_review_score": 5.0
+    },
+    {
+      "purchase_ym": "2017-01",
+      "rows": 748,
+      "unique_orders": 741,
+      "delayed_rows": 22,
+      "avg_review_score": 4.2059
+    },
+    {
+      "purchase_ym": "2017-02",
+      "rows": 1651,
+      "unique_orders": 1643,
+      "delayed_rows": 46,
+      "avg_review_score": 4.2035
+    },
+    {
+      "purchase_ym": "2017-03",
+      "rows": 2542,
+      "unique_orders": 2527,
+      "delayed_rows": 139,
+      "avg_review_score": 4.1845
+    },
+    {
+      "purchase_ym": "2017-04",
+      "rows": 2296,
+      "unique_orders": 2290,
+      "delayed_rows": 178,
+      "avg_review_score": 4.1363
+    },
+    {
+      "purchase_ym": "2017-05",
+      "rows": 3553,
+      "unique_orders": 3517,
+      "delayed_rows": 121,
+      "avg_review_score": 4.2375
+    },
+    {
+      "purchase_ym": "2017-06",
+      "rows": 3142,
+      "unique_orders": 3111,
+      "delayed_rows": 119,
+      "avg_review_score": 4.2225
+    },
+    {
+      "purchase_ym": "2017-07",
+      "rows": 3882,
+      "unique_orders": 3842,
+      "delayed_rows": 132,
+      "avg_review_score": 4.2537
+    },
+    {
+      "purchase_ym": "2017-08",
+      "rows": 4207,
+      "unique_orders": 4165,
+      "delayed_rows": 140,
+      "avg_review_score": 4.3092
+    },
+    {
+      "purchase_ym": "2017-09",
+      "rows": 4144,
+      "unique_orders": 4118,
+      "delayed_rows": 211,
+      "avg_review_score": 4.2679
+    },
+    {
+      "purchase_ym": "2017-10",
+      "rows": 4474,
+      "unique_orders": 4446,
+      "delayed_rows": 229,
+      "avg_review_score": 4.2052
+    },
+    {
+      "purchase_ym": "2017-11",
+      "rows": 7289,
+      "unique_orders": 7237,
+      "delayed_rows": 1030,
+      "avg_review_score": 3.9889
+    },
+    {
+      "purchase_ym": "2017-12",
+      "rows": 5487,
+      "unique_orders": 5461,
+      "delayed_rows": 453,
+      "avg_review_score": 4.0906
+    },
+    {
+      "purchase_ym": "2018-01",
+      "rows": 7053,
+      "unique_orders": 7013,
+      "delayed_rows": 457,
+      "avg_review_score": 4.1083
+    },
+    {
+      "purchase_ym": "2018-02",
+      "rows": 6591,
+      "unique_orders": 6507,
+      "delayed_rows": 1047,
+      "avg_review_score": 3.8832
+    },
+    {
+      "purchase_ym": "2018-03",
+      "rows": 6986,
+      "unique_orders": 6948,
+      "delayed_rows": 1470,
+      "avg_review_score": 3.8122
+    },
+    {
+      "purchase_ym": "2018-04",
+      "rows": 6763,
+      "unique_orders": 6752,
+      "delayed_rows": 352,
+      "avg_review_score": 4.2055
+    },
+    {
+      "purchase_ym": "2018-05",
+      "rows": 6730,
+      "unique_orders": 6722,
+      "delayed_rows": 550,
+      "avg_review_score": 4.2358
+    },
+    {
+      "purchase_ym": "2018-06",
+      "rows": 6078,
+      "unique_orders": 6072,
+      "delayed_rows": 83,
+      "avg_review_score": 4.3078
+    },
+    {
+      "purchase_ym": "2018-07",
+      "rows": 6139,
+      "unique_orders": 6118,
+      "delayed_rows": 266,
+      "avg_review_score": 4.3188
+    },
+    {
+      "purchase_ym": "2018-08",
+      "rows": 6332,
+      "unique_orders": 6330,
+      "delayed_rows": 652,
+      "avg_review_score": 4.3105
+    }
+  ]
+}

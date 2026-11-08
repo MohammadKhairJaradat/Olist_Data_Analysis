@@ -1,0 +1,139 @@
+{
+  "generated_at_utc": "2026-11-08T17:56:41Z",
+  "all_checks_passed": true,
+  "checks_total": 8,
+  "checks_passed": 8,
+  "checks_failed": 0,
+  "staging": {
+    "mode": "from-raw",
+    "staging_tables": {
+      "olist_orders": 99441,
+      "olist_order_reviews": 99224,
+      "olist_customers": 99441
+    },
+    "total_staged_rows": 298106
+  },
+  "transform": {
+    "sql_joined_rows_before_filter": 96353,
+    "negative_delivery_days_filtered": 0,
+    "clean_analytical_rows": 96353,
+    "unique_orders": 95824,
+    "multi_review_extra_rows": 529
+  },
+  "checks": [
+    {
+      "check": "required_columns_present",
+      "passed": true,
+      "details": {
+        "expected_columns": [
+          "order_id",
+          "customer_id",
+          "customer_state",
+          "review_score",
+          "purchase_date",
+          "actual_delivery_date",
+          "estimated_delivery_date",
+          "actual_delivery_days",
+          "delay_days",
+          "delivery_status"
+        ],
+        "missing_columns": []
+      }
+    },
+    {
+      "check": "no_null_critical_fields",
+      "passed": true,
+      "details": {
+        "total_nulls": 0,
+        "nulls_by_column": {
+          "order_id": 0,
+          "customer_id": 0,
+          "customer_state": 0,
+          "review_score": 0,
+          "purchase_date": 0,
+          "actual_delivery_date": 0,
+          "estimated_delivery_date": 0,
+          "actual_delivery_days": 0,
+          "delay_days": 0,
+          "delivery_status": 0
+        }
+      }
+    },
+    {
+      "check": "review_score_range_1_to_5",
+      "passed": true,
+      "details": {
+        "min_score": 1,
+        "max_score": 5,
+        "out_of_range_rows": 0
+      }
+    },
+    {
+      "check": "delivery_date_not_before_purchase_date",
+      "passed": true,
+      "details": {
+        "negative_actual_delivery_days_rows": 0,
+        "date_order_violation_rows": 0,
+        "min_actual_delivery_days": 0.5,
+        "max_actual_delivery_days": 208.4
+      }
+    },
+    {
+      "check": "valid_delivery_status_domain",
+      "passed": true,
+      "details": {
+        "observed_values": [
+          "Delayed",
+          "On-Time"
+        ]
+      }
+    },
+    {
+      "check": "order_delivery_status_consistent_across_reviews",
+      "passed": true,
+      "details": {
+        "unique_orders": 95824,
+        "joined_records": 96353,
+        "orders_with_multiple_reviews": 525,
+        "extra_review_rows_retained": 529,
+        "conflicting_status_orders": 0
+      }
+    },
+    {
+      "check": "monthly_partition_coverage_audit",
+      "passed": true,
+      "details": {
+        "purchase_ym_start": "2016-09",
+        "purchase_ym_end": "2018-08",
+        "calendar_months_in_span": 24,
+        "present_partition_months": 23,
+        "missing_months_in_span": [
+          "2016-11"
+        ],
+        "note": "2016-11 has 0 delivered orders in the upstream Olist dataset."
+      }
+    },
+    {
+      "check": "cross_store_reconciliation_sqlite_csv_parquet",
+      "passed": true,
+      "details": {
+        "sqlite_rows": 96353,
+        "csv_rows": 96353,
+        "parquet_rows": 96353,
+        "sqlite_unique_orders": 95824,
+        "csv_unique_orders": 95824,
+        "parquet_unique_orders": 95824,
+        "sqlite_rows_by_status": {
+          "Delayed": 7700,
+          "On-Time": 88653
+        },
+        "sqlite_avg_review_by_status": {
+          "Delayed": 2.5665,
+          "On-Time": 4.2937
+        },
+        "on_time_avg_review_rounded": 4.29,
+        "delayed_avg_review_rounded": 2.57
+      }
+    }
+  ]
+}
